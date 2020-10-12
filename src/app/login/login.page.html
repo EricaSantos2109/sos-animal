@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true">
+
+  <!-- div com classe para centralizar o conteúdo -->
+  <div class="ion-justify-content-center" id="container">
+    <!-- div que contém o ícone de logo e o título do aplicativo -->
+    <div class="app-logo">
+      <ion-icon src="../../assets/icone-app.svg"></ion-icon>
+      <h1>S.O.S ANIMAL</h1>
+      <h4>Login</h4>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="register(form)">
+      <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->
+      <ion-grid>
+        <!-- inputs de autenticação por email e senha -->
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="9">
+            <ion-input class="light" placeholder="E-mail" type="text" color="light"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="9">
+            <ion-input class="light" placeholder="Senha" type="password" color="light"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h6><b>Esqueceu sua senha?</b></h6>
+          </ion-col>
+        </ion-row>
+        <!-- fim dos inputs de autenticação por email e senha -->
+
+        <!-- botão de entrar -->
+        <ion-row style="padding-top: 28px;">
+          <ion-col>
+            <ion-button color="dark" fill="outline"> Entrar </ion-button>
+          </ion-col>
+        </ion-row>
+        <!-- fim do botão de entrar -->
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

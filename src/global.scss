@@ -24,3 +24,60 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// Cor de fundo padrão.
+ion-content {
+    --ion-background-color: #2ec83d;
+}
+
+// Cor de fundo com degradê.
+ion-content.gradient {
+    --ion-background-color: linear-gradient(180deg, #2ec83d 6.77%, #ffffff 19.79%);
+}
+
+// Alterei o tamanho do ícone de logo do aplicativo.
+div.app-logo ion-icon {
+    font-size: 108px;
+}
+
+// h1 para utilizar como título da logo.
+div.app-logo h1 {
+    margin-top: 7px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+// h4 para utilizar como título de bem-vindo.
+div.app-logo h4 {
+    margin-top: 28px;
+    margin-bottom: 28px;
+    font-weight: bold;
+}
+
+// Padronizei o estilo e o tamanho dos botões comuns.
+ion-button {
+    min-width: 150px;
+    font-weight: bold;
+}
+
+// Padronizei o tamanho dos botões de login.
+ion-button.login {
+    min-width: 300px;
+}
+
+// Alterei a borda superior para o hr ficar visível.
+hr {
+    border-top: 1px solid black;
+}
+
+ion-button ion-icon {
+    padding-right: 7px;
+}
+
+ion-input.light {
+    border-bottom: 1px solid white;
+}
+
+ion-input.dark {
+    border-bottom: 1px solid black;
+}

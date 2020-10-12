@@ -1,20 +1,78 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- OBS:. Todos os estilos utilizados estão no global.css -->
+
+  <!-- div com classe para centralizar o conteúdo -->
+  <div class="ion-justify-content-center" id="container">
+
+    <!-- div que contém o ícone de logo e o título do aplicativo -->
+    <div class="app-logo">
+      <ion-icon src="../../assets/icone-app.svg"></ion-icon>
+      <h1>S.O.S ANIMAL</h1>
+      <h4>Bem-vindo</h4>
+    </div>
+
+    <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->
+    <ion-grid>
+
+      <!-- botões de autenticação por redes sociais -->
+      <ion-row>
+        <ion-col> <!-- como tem apenas uma coluna o botão ficará no centro da linha -->
+          <ion-button class="login" color="light" fill="solid">
+            <ion-icon name="logo-google"></ion-icon>
+            Continuar com o Google
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="login" color="tertiary" fill="solid">
+            <ion-icon name="logo-facebook"></ion-icon>
+            Continuar com o Facebook
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <!-- fim dos botões de autenticação por redes sociais -->
+
+      <!-- linha divisora -->
+      <ion-row>
+
+        <ion-col>
+          <hr style="margin-top: 28px; margin-bottom: 28px;">
+        </ion-col>
+
+        <!-- a escrita ocupa apenas uma fração das colunas -->
+        <ion-col size="1">
+          <h6>ou</h6>
+        </ion-col>
+
+        <ion-col>
+          <hr style="margin-top: 28px; margin-bottom: 28px;">
+        </ion-col>
+
+      </ion-row>
+      <!-- fim da linha divisora -->
+
+      <!-- botões de login e cadastro -->
+      <ion-row>
+        <ion-col>
+          <ion-button color="dark" fill="outline">
+            Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button color="dark" fill="outline">
+            Criar conta
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <!-- fim dos botões de login e cadastro -->
+
+    </ion-grid>
+
   </div>
 </ion-content>

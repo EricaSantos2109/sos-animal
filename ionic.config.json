@@ -1,5 +1,7 @@
 {
   "name": "sos-animal",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

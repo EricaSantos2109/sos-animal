@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" src="../../assets/icone-app.svg" style="margin-left: 14px; font-size: xx-large"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title><b>S.O.S Animal</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- div com classe para centralizar o conteúdo -->
+  <div class="ion-justify-content-center" id="container">
+    <div class="app-logo">
+      <ion-icon src="../../assets/ponto-de-interrogacao.svg"></ion-icon>
+      <h1>SUPORTE</h1>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="register(form)">
+      <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->
+      <ion-grid>
+        <!-- inicio da descrição-->
+        <ion-row class="ion-justify-content-center">
+          <h4>Qual o problema?</h4>
+          <ion-col size="9">
+            <ion-input class="light" placeholder="Descreva detalhadamente" type="text" color="light"></ion-input>
+          </ion-col>
+        </ion-row>
+        <!-- fim da descrição -->
+
+        <!-- botão de salvar -->
+        <ion-row style="padding-top: 28px;">
+          <ion-col>
+            <ion-button color="dark" fill="outline"> Enviar </ion-button>
+          </ion-col>
+        </ion-row>
+        <!-- fim do botão de entrar -->
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
