@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'suporte',
     loadChildren: () => import('./suporte/suporte.module').then( m => m.SuportePageModule)
   },
+  {
+    path: 'finalizar-adocao',
+    loadChildren: () => import('./finalizar-adocao/finalizar-adocao.module').then( m => m.FinalizarAdocaoPageModule)
+  },
 ];
 
 @NgModule({

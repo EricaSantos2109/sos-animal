@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" src="../../assets/icone-app.svg" style="margin-left: 14px; font-size: xx-large"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title><b>S.O.S Animal</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- OBS:. Todos os estilos utilizados estão no global.css -->
+
+  <!-- div com classe para centralizar o conteúdo -->
+  <div class="ion-justify-content-center" id="container">
+    <div class="app-logo">
+      <ion-icon src="../../assets/finalizar-adocao.svg"></ion-icon>
+      <h1>FINALIZAR ADOÇÃO</h1>
+    </div>
+    <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->
+    <ion-grid>
+      <h5><b>Selecione uma das opções para entrar em contato com o doador:</b></h5>
+      <!-- forma de contato com o doador -->
+      <ion-row>
+        <ion-col> <!-- como tem apenas uma coluna o botão ficará no centro da linha -->
+          <ion-button class="login" color="success" fill="solid">
+            <ion-icon name="call-outline"></ion-icon>
+            Entrar em contato por ligação.
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="login" color="light" fill="solid">
+            <ion-icon name="mail-outline"></ion-icon>
+            Entrar em contato por e-mail.
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <!-- fim da forma de contato com o doador -->
+      <ion-row>
+        <ion-col>
+          <h5><b>Aconteceu algum problema? Conte para nós!</b></h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
