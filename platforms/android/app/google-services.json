@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "560619750094",
+    "firebase_url": "https://sos-animal-b600e.firebaseio.com",
+    "project_id": "sos-animal-b600e",
+    "storage_bucket": "sos-animal-b600e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560619750094:android:3f66dc4019a636a81b869f",
+        "android_client_info": {
+          "package_name": "io.ionic.sosanimal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560619750094-gi9d0gud3ojvhtrsmm1q4e0tpoa4c05f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4CoR-2MQhRmlPy1MHo-K3BTsrOTIkk8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560619750094-gi9d0gud3ojvhtrsmm1q4e0tpoa4c05f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
