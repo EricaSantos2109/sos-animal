@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'finalizar-adocao',
     loadChildren: () => import('./finalizar-adocao/finalizar-adocao.module').then( m => m.FinalizarAdocaoPageModule)
   },
+  {
+    path: 'editar-perfil',
+    loadChildren: () => import('./editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
+  },
+  {
+    path: 'cadastro-animal',
+    loadChildren: () => import('./cadastro-animal/cadastro-animal.module').then( m => m.CadastroAnimalPageModule)
+  }
 ];
 
 @NgModule({

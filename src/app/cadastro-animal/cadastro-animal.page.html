@@ -1,0 +1,81 @@
+<ion-content [fullscreen]="true">
+
+  <!-- div com classe para centralizar o conteúdo -->
+  <div class="ion-justify-content-center" id="container">
+    <div class="app-logo">
+      <ion-icon src="../../assets/icone-app.svg"></ion-icon>
+      <h1>S.O.S ANIMAL</h1>
+      <h4>Cadastro de Animal</h4>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="register(form)">
+      <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->
+      <ion-grid>
+        <!-- inicio do cadastro -->
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-input class="light" placeholder="Nome" type="text" color="light"></ion-input>
+          </ion-col>
+          
+          <ion-col size="6">
+            <ion-select placeholder="Tipo de Animal" class="light">
+              <ion-select-option value="f">Gato</ion-select-option>
+              <ion-select-option value="m">Cachorro</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-input class="light" placeholder="Raça" type="text" color="light"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input class="light" placeholder="Característica" type="text" color="light"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-input class="light" placeholder="Idade" type="number" color="light"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input class="light" placeholder="Cor do pelo" type="text" color="light"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="9">
+            <ion-input class="light" placeholder="Motivo de colocar para adoção" type="text" color="light"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="padding-top: 28px;">
+          <ion-col>
+            <ion-button color="dark" fill="outline"> Inserir localização </ion-button>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row style="padding-top: 28px;">
+          <ion-col size="4">
+              <ion-img src="assets/foto.svg" class= "tamanho-img"></ion-img>
+          </ion-col>
+          <ion-col size="4">
+              <ion-img src="assets/foto.svg" class= "tamanho-img"></ion-img>
+          </ion-col>
+          <ion-col size="4">
+              <ion-img src="assets/foto.svg" class= "tamanho-img"></ion-img>
+          </ion-col>
+        </ion-row>
+        <!-- fim do cadastro -->
+
+        <!-- botão de salvar -->
+        <ion-row style="padding-top: 28px;">
+          <ion-col>
+            <ion-button color="dark" fill="outline"> Salvar </ion-button>
+          </ion-col>
+        </ion-row>
+        <!-- fim do botão de salvar -->
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

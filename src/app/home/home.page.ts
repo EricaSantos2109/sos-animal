@@ -43,7 +43,7 @@ export class HomePage {
         this.google.login(params)
         .then((response) => {
           const { idToken, accessToken } = response;
-          this.onLoginSuccess(idToken, accessToken);
+          this.onLoginSuccess(idToken, accessToken)
         }).catch((error) => {
           console.log(error);
           alert('error:' + JSON.stringify(error));
@@ -54,6 +54,7 @@ export class HomePage {
           console.log('success in google login', success);
           this.isGoogleLogin = true;
           this.user =  success.user;
+          this.router.navigate(['/criar-conta']);
         }).catch(err => {
           console.log(err.message, 'Error in google login');
         });
