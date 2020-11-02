@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { environment } from 'src/environments/environment';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { environment } from 'src/environments/environment';
     StatusBar,
     SplashScreen,
     GooglePlus,
+    AutenticacaoService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

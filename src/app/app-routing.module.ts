@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'cadastro-animal',
     loadChildren: () => import('./cadastro-animal/cadastro-animal.module').then( m => m.CadastroAnimalPageModule)
+  },
+  {
+    path: 'inicial-mapa',
+    loadChildren: () => import('./inicial-mapa/inicial-mapa.module').then( m => m.InicialMapaPageModule)
   }
 ];
 
