@@ -29,6 +29,7 @@
     "@ionic/angular": "^5.0.0",
     "cordova-android": "9.0.0",
     "firebase": "^7.24.0",
+    "ol": "^6.4.3",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
@@ -88,8 +89,7 @@
         "WEB_APPLICATION_CLIENT_ID": "560619750094-gi9d0gud3ojvhtrsmm1q4e0tpoa4c05f.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "15.0.1"
       },
-      "cordova-plugin-nativegeocoder": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-nativegeocoder": {}
     },
     "platforms": [
       "android"

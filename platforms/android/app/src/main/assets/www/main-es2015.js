@@ -50,6 +50,124 @@ const environment = {
 
 /***/ }),
 
+/***/ "Fic2":
+/*!**************************************************!*\
+  !*** ./src/app/services/autenticacao.service.ts ***!
+  \**************************************************/
+/*! exports provided: AutenticacaoService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AutenticacaoService", function() { return AutenticacaoService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/auth */ "UbJi");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "up+p");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! firebase */ "iqUP");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "qCKp");
+
+
+
+
+
+
+
+
+let AutenticacaoService = class AutenticacaoService {
+    constructor(google, loadingController, fireAuth, platform, router) {
+        this.google = google;
+        this.loadingController = loadingController;
+        this.fireAuth = fireAuth;
+        this.platform = platform;
+        this.router = router;
+        this.isGoogleLogin = false;
+        this.user = new rxjs__WEBPACK_IMPORTED_MODULE_7__["BehaviorSubject"](null);
+    }
+    showLoading() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.loading = yield this.loadingController.create({
+                message: 'Connecting ...'
+            });
+        });
+    }
+    loginGoogle() {
+        let params;
+        if (this.platform.is('cordova')) {
+            if (this.platform.is('android')) {
+                params = {
+                    webClientId: '560619750094-gi9d0gud3ojvhtrsmm1q4e0tpoa4c05f.apps.googleusercontent.com',
+                    offline: true
+                };
+            }
+            else {
+                params = {};
+            }
+            this.showLoading();
+            this.google.login(params)
+                .then((response) => {
+                const { idToken, accessToken } = response;
+                this.onLoginSuccess(idToken, accessToken);
+            }).catch((error) => {
+                console.log(error);
+                alert('error:' + JSON.stringify(error));
+            });
+        }
+        else {
+            this.fireAuth.signInWithPopup(new firebase__WEBPACK_IMPORTED_MODULE_6__["auth"].GoogleAuthProvider()).then(success => {
+                console.log('success in google login', success);
+                this.isGoogleLogin = true;
+                this.user.next(success.user);
+                this.router.navigate(['/suporte']);
+            }).catch(err => {
+                console.log(err.message, 'Error in google login');
+            });
+        }
+    }
+    onLoginSuccess(accessToken, accessSecret) {
+        const credential = accessSecret ? firebase__WEBPACK_IMPORTED_MODULE_6__["auth"].GoogleAuthProvider
+            .credential(accessToken, accessSecret) : firebase__WEBPACK_IMPORTED_MODULE_6__["auth"].GoogleAuthProvider
+            .credential(accessToken);
+        this.fireAuth.signInWithCredential(credential)
+            .then((success) => {
+            this.isGoogleLogin = true;
+            this.user.next(success.user);
+            this.loading.dismiss();
+            this.router.navigate(['/inicial-mapa']);
+        });
+    }
+    onLoginError(err) {
+        console.log(err);
+    }
+    logout() {
+        this.fireAuth.signOut().then(() => {
+            this.isGoogleLogin = false;
+        });
+    }
+    getUserObservable() {
+        return this.user.asObservable();
+    }
+};
+AutenticacaoService.ctorParameters = () => [
+    { type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_4__["GooglePlus"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"] },
+    { type: _angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["Platform"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+AutenticacaoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], AutenticacaoService);
+
+
+
+/***/ }),
+
 /***/ "Sy1n":
 /*!**********************************!*\
   !*** ./src/app/app.component.ts ***!
@@ -67,6 +185,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "54vc");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "VYYF");
+/* harmony import */ var src_app_services_autenticacao_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/autenticacao.service */ "Fic2");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
 
 
 
@@ -75,23 +197,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, autenticacao, router, menu) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.autenticacao = autenticacao;
+        this.router = router;
+        this.menu = menu;
+        this.usuarioLogado = false;
         this.initializeApp();
     }
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            this.autenticacao.getUserObservable().subscribe((user) => {
+                this.usuarioLogado = (user != null);
+            });
         });
+    }
+    navegar(rota) {
+        this.router.navigate([rota]);
+        this.menu.close();
     }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"] },
+    { type: src_app_services_autenticacao_service__WEBPACK_IMPORTED_MODULE_7__["AutenticacaoService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -114,7 +250,7 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-menu side=\"end\" *ngIf=\"usuarioLogado\" menuId=\"first\" contentId=\"main\">\n    <ion-header>\n      <ion-toolbar>\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n    </ion-header>\n    <ion-content>\n      <ion-list>\n        <ion-item (click)=\"navegar('editar-perfil')\">Editar Perfil</ion-item>\n        <ion-item (click)=\"navegar('cadastro-animal')\">Cadastrar Animal</ion-item>\n        <ion-item (click)=\"navegar('inicial-mapa')\">Visualizar Mapa</ion-item>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n  <ion-router-outlet id=\"main\"></ion-router-outlet>\n</ion-app>");
 
 /***/ }),
 
@@ -141,6 +277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/fire */ "spgP");
 /* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "up+p");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/environments/environment */ "AytR");
+/* harmony import */ var src_app_services_autenticacao_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/autenticacao.service */ "Fic2");
+
 
 
 
@@ -165,6 +303,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
             _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_11__["GooglePlus"],
+            src_app_services_autenticacao_service__WEBPACK_IMPORTED_MODULE_13__["AutenticacaoService"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -432,7 +571,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: 'home',
-        loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("default~firebase-auth~home-home-module"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "ct+p")).then(m => m.HomePageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() | home-home-module */ "home-home-module").then(__webpack_require__.bind(null, /*! ./home/home.module */ "ct+p")).then(m => m.HomePageModule)
     },
     {
         path: '',
@@ -455,6 +594,18 @@ const routes = [
         path: 'finalizar-adocao',
         loadChildren: () => __webpack_require__.e(/*! import() | finalizar-adocao-finalizar-adocao-module */ "finalizar-adocao-finalizar-adocao-module").then(__webpack_require__.bind(null, /*! ./finalizar-adocao/finalizar-adocao.module */ "8m/4")).then(m => m.FinalizarAdocaoPageModule)
     },
+    {
+        path: 'editar-perfil',
+        loadChildren: () => __webpack_require__.e(/*! import() | editar-perfil-editar-perfil-module */ "editar-perfil-editar-perfil-module").then(__webpack_require__.bind(null, /*! ./editar-perfil/editar-perfil.module */ "3iMz")).then(m => m.EditarPerfilPageModule)
+    },
+    {
+        path: 'cadastro-animal',
+        loadChildren: () => __webpack_require__.e(/*! import() | cadastro-animal-cadastro-animal-module */ "cadastro-animal-cadastro-animal-module").then(__webpack_require__.bind(null, /*! ./cadastro-animal/cadastro-animal.module */ "3o44")).then(m => m.CadastroAnimalPageModule)
+    },
+    {
+        path: 'inicial-mapa',
+        loadChildren: () => __webpack_require__.e(/*! import() | inicial-mapa-inicial-mapa-module */ "inicial-mapa-inicial-mapa-module").then(__webpack_require__.bind(null, /*! ./inicial-mapa/inicial-mapa.module */ "KlPz")).then(m => m.InicialMapaPageModule)
+    }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -480,7 +631,7 @@ AppRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-menu ion-content {\n  --ion-background-color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNDO0VBQ0MsNkJBQUE7QUFBRiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1tZW51IHtcblx0aW9uLWNvbnRlbnQge1xuXHRcdC0taW9uLWJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuXHR9XG59Il19 */");
 
 /***/ }),
 

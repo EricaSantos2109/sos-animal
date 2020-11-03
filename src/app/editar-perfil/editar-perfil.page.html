@@ -1,17 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" src="../../assets/icone-app.svg" style="margin-left: 14px; font-size: xx-large"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title><b>S.O.S Animal</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
 
   <!-- div com classe para centralizar o conteúdo -->
   <div class="ion-justify-content-center" id="container">
     <div class="app-logo">
-      <ion-icon src="../../assets/icone-app.svg"></ion-icon>
-      <h1>S.O.S ANIMAL</h1>
       <h4>Alterar Perfil</h4>
     </div>
 
     <form #form="ngForm" (ngSubmit)="register(form)">
       <ion-row>
         <ion-col size="6">
-            <ion-img src="assets/foto.svg" class= "tamanho-img"></ion-img>
+          <ion-img src="assets/foto.svg" class="tamanho-img"></ion-img>
         </ion-col>
       </ion-row>
       <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->

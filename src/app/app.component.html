@@ -1,15 +1,15 @@
 <ion-app>
-  <ion-menu side="end" [hidden]="(usuarioLogado | async) == null" menuId="first" contentId="main">
+  <ion-menu side="end" *ngIf="usuarioLogado" menuId="first" contentId="main">
     <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Start Menu</ion-title>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item>Editar Perfil</ion-item>
-        <ion-item>Cadastrar Animal</ion-item>
-        <ion-item>Visualizar Mapa</ion-item>
+        <ion-item (click)="navegar('editar-perfil')">Editar Perfil</ion-item>
+        <ion-item (click)="navegar('cadastro-animal')">Cadastrar Animal</ion-item>
+        <ion-item (click)="navegar('inicial-mapa')">Visualizar Mapa</ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Observable, of } from 'rxjs';
 import { AutenticacaoService } from "src/app/services/autenticacao.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +12,15 @@ import { AutenticacaoService } from "src/app/services/autenticacao.service";
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  public usuarioLogado:Observable<any>;
+  public usuarioLogado: boolean = false;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private autenticacao: AutenticacaoService
+    private autenticacao: AutenticacaoService,
+    private router: Router,
+    private menu: MenuController
   ) {
     this.initializeApp();
   }
@@ -27,7 +29,14 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      of(this.autenticacao.user).subscribe(x=>this.usuarioLogado=x);
+      this.autenticacao.getUserObservable().subscribe((user) => {
+        this.usuarioLogado = (user != null);
+      })
     });
+  }
+
+  navegar(rota) {
+    this.router.navigate([rota]);
+    this.menu.close();
   }
 }

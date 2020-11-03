@@ -1,2 +1,14 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-icon slot="start" src="../../assets/icone-app.svg" style="margin-left: 14px; font-size: xx-large">
+		</ion-icon>
+		<ion-buttons slot="end">
+			<ion-menu-button autoHide="false"></ion-menu-button>
+		</ion-buttons>
+		<ion-title><b>S.O.S Animal</b></ion-title>
+	</ion-toolbar>
+</ion-header>
 
-<ion-router-outlet id="main"></ion-router-outlet>
+<ion-content [fullscreen]="true">
+	<div #mapElementRef class="map"></div>
+</ion-content>
