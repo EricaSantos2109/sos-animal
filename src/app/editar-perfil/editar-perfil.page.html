@@ -17,9 +17,11 @@
     </div>
 
     <form #form="ngForm" (ngSubmit)="register(form)">
-      <ion-row>
+      <ion-row class="ion-justify-content-center">
         <ion-col size="6">
-          <ion-img src="assets/foto.svg" class="tamanho-img"></ion-img>
+          <ion-avatar>
+            <ion-img src="{{base64Image}}" class="tamanho-img" (click)="cam()"></ion-img>
+          </ion-avatar>
         </ion-col>
       </ion-row>
       <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->

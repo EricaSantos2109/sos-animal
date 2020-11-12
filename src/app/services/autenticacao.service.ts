@@ -52,7 +52,7 @@ export class AutenticacaoService {
         console.log('success in google login', success);
         this.isGoogleLogin = true;
         this.user.next(success.user);
-        this.router.navigate(['/suporte']);
+        this.router.navigate(['/inicial-mapa']);
       }).catch(err => {
         console.log(err.message, 'Error in google login');
       });

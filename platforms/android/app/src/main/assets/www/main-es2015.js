@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/reodax/Projects/sos-animal/src/main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\Erica\Documents\sos-animal\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -121,7 +121,7 @@ let AutenticacaoService = class AutenticacaoService {
                 console.log('success in google login', success);
                 this.isGoogleLogin = true;
                 this.user.next(success.user);
-                this.router.navigate(['/suporte']);
+                this.router.navigate(['/inicial-mapa']);
             }).catch(err => {
                 console.log(err.message, 'Error in google login');
             });
@@ -250,7 +250,7 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-menu side=\"end\" *ngIf=\"usuarioLogado\" menuId=\"first\" contentId=\"main\">\n    <ion-header>\n      <ion-toolbar>\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n    </ion-header>\n    <ion-content>\n      <ion-list>\n        <ion-item (click)=\"navegar('editar-perfil')\">Editar Perfil</ion-item>\n        <ion-item (click)=\"navegar('cadastro-animal')\">Cadastrar Animal</ion-item>\n        <ion-item (click)=\"navegar('inicial-mapa')\">Visualizar Mapa</ion-item>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n  <ion-router-outlet id=\"main\"></ion-router-outlet>\n</ion-app>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\r\n  <ion-menu side=\"end\" *ngIf=\"usuarioLogado\" menuId=\"first\" contentId=\"main\">\r\n    <ion-header>\r\n      <ion-toolbar>\r\n        <ion-title>Menu</ion-title>\r\n      </ion-toolbar>\r\n    </ion-header>\r\n    <ion-content>\r\n      <ion-list>\r\n        <ion-item (click)=\"navegar('editar-perfil')\">Editar Perfil</ion-item>\r\n        <ion-item (click)=\"navegar('cadastro-animal')\">Cadastrar Animal</ion-item>\r\n        <ion-item (click)=\"navegar('inicial-mapa')\">Visualizar Mapa</ion-item>\r\n      </ion-list>\r\n    </ion-content>\r\n  </ion-menu>\r\n  <ion-router-outlet id=\"main\"></ion-router-outlet>\r\n</ion-app>");
 
 /***/ }),
 
@@ -278,6 +278,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "up+p");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/environments/environment */ "AytR");
 /* harmony import */ var src_app_services_autenticacao_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/autenticacao.service */ "Fic2");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "a/9d");
+
 
 
 
@@ -304,6 +306,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
             _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_11__["GooglePlus"],
             src_app_services_autenticacao_service__WEBPACK_IMPORTED_MODULE_13__["AutenticacaoService"],
+            _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_14__["Camera"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -631,7 +634,7 @@ AppRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ion-menu ion-content {\n  --ion-background-color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNDO0VBQ0MsNkJBQUE7QUFBRiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1tZW51IHtcblx0aW9uLWNvbnRlbnQge1xuXHRcdC0taW9uLWJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuXHR9XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-menu ion-content {\n  --ion-background-color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNDO0VBQ0MsNkJBQUE7QUFBRiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1tZW51IHtcclxuXHRpb24tY29udGVudCB7XHJcblx0XHQtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxuXHR9XHJcbn0iXX0= */");
 
 /***/ }),
 
