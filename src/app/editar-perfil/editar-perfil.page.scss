@@ -3,7 +3,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     margin-top: 40px;
   }
@@ -27,7 +27,5 @@
   .tamanho-img{
       height: 100px;
       width: 100px;
-      border-radius: 50% !important;
-      overflow: hidden;
   }
 

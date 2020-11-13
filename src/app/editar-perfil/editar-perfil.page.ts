@@ -1,34 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+import { AlertController, ViewWillEnter } from "@ionic/angular";
 @Component({
-  selector: 'app-editar-perfil',
-  templateUrl: './editar-perfil.page.html',
-  styleUrls: ['./editar-perfil.page.scss'],
+  selector: "app-editar-perfil",
+  templateUrl: "./editar-perfil.page.html",
+  styleUrls: ["./editar-perfil.page.scss"],
 })
-export class EditarPerfilPage implements OnInit {
+export class EditarPerfilPage implements ViewWillEnter {
+  @ViewChild("form") formulario: NgForm;
 
-  public base64Image: any;
-  constructor(private camera: Camera) { }
+  public base64Image: any = "assets/perfil.svg";
 
-  cam(){
+  constructor(
+    private camera: Camera,
+    public alertController: AlertController
+  ) {}
+
+  ionViewWillEnter(): void {
+    this.formulario.reset();
+  }
+
+  salvarDados() {
+    this.formulario.reset();
+    this.presentAlert(
+      "Alterado com sucesso",
+      "O perfil foi alterado com sucesso!"
+    );
+  }
+
+  async presentAlert(title, msg) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: msg,
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+  }
+  cam() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     this.base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-     // Handle error
-    });
-  }
+      mediaType: this.camera.MediaType.PICTURE,
+    };
 
-  ngOnInit() {
+    this.camera.getPicture(options).then(
+      (imageData) => {
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+      },
+      (err) => {
+        this.presentAlert("Error", err);
+      }
+    );
   }
-
 }

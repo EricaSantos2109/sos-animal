@@ -12,48 +12,52 @@
 
   <!-- div com classe para centralizar o conteúdo -->
   <div class="ion-justify-content-center" id="container">
-    <div class="app-logo">
-      <h4>Alterar Perfil</h4>
-    </div>
-
-    <form #form="ngForm" (ngSubmit)="register(form)">
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="6">
-          <ion-avatar>
-            <ion-img src="{{base64Image}}" class="tamanho-img" (click)="cam()"></ion-img>
-          </ion-avatar>
-        </ion-col>
-      </ion-row>
+ 
+    <form #form="ngForm" (ngSubmit)="salvarDados()">
       <!-- grade para manter os elementos um embaixo do outro (um botão em cada linha) -->
       <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div class="app-logo">
+              <h4>Alterar Perfil</h4>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="3.5">
+              <ion-avatar>
+                <ion-img src="{{base64Image}}" class="tamanho-img" (click)="cam()"></ion-img>
+              </ion-avatar>
+          </ion-col>
+        </ion-row>
         <!-- inicio do cadastro -->
+        <ion-row class="ion-justify-content-center" style="padding-top: 15%;">
+          <ion-col size="12">
+            <ion-input class="light" placeholder="Nome" type="text" color="light" name="nome" [(ngModel)]="nome"></ion-input>
+          </ion-col>
+        </ion-row>
+
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
-            <ion-input class="light" placeholder="Nome" type="text" color="light"></ion-input>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="12">
-            <ion-input class="light" placeholder="E-mail" type="text" color="light"></ion-input>
+            <ion-input class="light" placeholder="E-mail" type="text" color="light" name="email" [(ngModel)]="email"></ion-input>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-justify-content-center">
           <ion-col size="6">
-            <ion-input class="light" placeholder="Telefone" type="number" color="light"></ion-input>
+            <ion-input class="light" placeholder="Telefone" type="number" color="light" name="tel" [(ngModel)]="tel"></ion-input>
           </ion-col>
           <ion-col size="6">
-            <ion-input class="light" placeholder="Celular" type="number" color="light"></ion-input>
+            <ion-input class="light" placeholder="Celular" type="number" color="light" name="cel" [(ngModel)]="cel"></ion-input>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-justify-content-center">
           <ion-col size="6">
-            <ion-input class="light" placeholder="Nova senha" type="password" color="light"></ion-input>
+            <ion-input class="light" placeholder="Nova senha" type="password" color="light" name="senha" [(ngModel)]="senha"></ion-input>
           </ion-col>
           <ion-col size="6">
-            <ion-input class="light" placeholder="Confirmar senha" type="password" color="light"></ion-input>
+            <ion-input class="light" placeholder="Confirmar senha" type="password" color="light" name="senha" [(ngModel)]="senha"></ion-input>
           </ion-col>
         </ion-row>
         <!-- fim do cadastro -->
@@ -61,7 +65,7 @@
         <!-- botão de salvar -->
         <ion-row style="padding-top: 28px;">
           <ion-col>
-            <ion-button color="dark" fill="outline"> Salvar </ion-button>
+            <ion-button type="submit" color="dark" fill="outline"> Salvar </ion-button>
           </ion-col>
         </ion-row>
         <!-- fim do botão de salvar -->
